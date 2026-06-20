@@ -1,0 +1,2 @@
+import { getDb } from "@/lib/mongodb";
+export async function POST(request:Request){try{const body=await request.json();if(!body.name||!body.phone||!body.fileUrl)return Response.json({error:"Missing order details"},{status:400});const db=await getDb();const result=await db.collection("orders").insertOne({...body,status:"Pending",paymentStatus:"Unpaid",createdAt:new Date()});return Response.json({id:result.insertedId},{status:201})}catch{return Response.json({error:"Unable to create order"},{status:500})}}

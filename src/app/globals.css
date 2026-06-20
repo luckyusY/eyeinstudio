@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root { --background:#090908; --foreground:#f7f2e8; --gold:#c7a35a; --gold-light:#ead39a; --surface:#11110f; --line:rgba(234,211,154,.17); }
+@theme inline {
+  --color-background:var(--background); --color-foreground:var(--foreground); --color-gold:var(--gold); --color-gold-light:var(--gold-light); --color-surface:var(--surface);
+  --font-sans:"Geist","Geist Fallback",ui-sans-serif,system-ui,sans-serif; --font-mono:"Geist Mono","Geist Mono Fallback",ui-monospace,monospace; --font-display:"Cormorant Garamond",Georgia,serif;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth;background:var(--background)} body{margin:0;background:var(--background);color:var(--foreground);font-family:var(--font-geist-sans),Arial,sans-serif} a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} ::selection{background:var(--gold);color:#090908}
+.container-shell{width:min(1180px,calc(100% - 2rem));margin-inline:auto}.eyebrow{color:var(--gold-light);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600}.display{font-family:var(--font-display),Georgia,serif;letter-spacing:-.025em}.hairline{border-color:var(--line)}
+.gold-button{display:inline-flex;min-height:3.1rem;align-items:center;justify-content:center;gap:.6rem;background:var(--gold);color:#0a0907;padding:.8rem 1.35rem;font-weight:650;font-size:.83rem;letter-spacing:.06em;text-transform:uppercase;transition:.25s ease}.gold-button:hover{background:var(--gold-light);transform:translateY(-2px)}
+.ghost-button{display:inline-flex;min-height:3.1rem;align-items:center;justify-content:center;gap:.6rem;border:1px solid var(--line);padding:.8rem 1.35rem;font-weight:600;font-size:.83rem;letter-spacing:.06em;text-transform:uppercase;transition:.25s ease}.ghost-button:hover{border-color:var(--gold);color:var(--gold-light)}
+.panel{background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));border:1px solid var(--line)}.field{width:100%;border:1px solid var(--line);background:#0d0d0b;color:var(--foreground);padding:.85rem 1rem;outline:none;transition:border-color .2s}.field:focus{border-color:var(--gold)}.field::placeholder{color:#756f66}
+@keyframes reveal{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.reveal{animation:reveal .75s ease both}

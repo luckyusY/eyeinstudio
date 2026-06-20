@@ -1,0 +1,738 @@
+Here is the full developer-ready documentation for EyeInStudio.com, prepared by Mado Creatives LTD.
+
+EYEINSTUDIO.COM WEBSITE DEVELOPMENT DOCUMENTATION
+
+Developer Requirement Specification (DRS)
+
+Company Name: Eye in Studio
+Website / Domain: EyeInStudio.com
+Prepared by: Mado Creatives LTD
+Business Type: Photography Studio + Printing + Framing + Lamination
+Location: Remera, Kigali, Rwanda
+Document Version: V1.0
+Date: June 2026
+
+⸻
+
+1. Executive Summary
+
+This document defines the full technical and functional requirements for developing EyeInStudio.com, a complete enterprise-grade digital platform for Eye in Studio.
+
+The platform will allow the business to:
+
+* Establish strong online presence
+* Showcase portfolio
+* Accept bookings online
+* Manage photo printing orders
+* Sell framing and lamination services
+* Store customer photos securely
+* Manage business operations through admin dashboard
+
+This is not just a portfolio website.
+This is a complete digital business management ecosystem.
+
+⸻
+
+2. Company Overview
+
+Eye in Studio is a professional photography studio based in Remera, Kigali, Rwanda.
+
+Services offered:
+
+* Studio photography
+* Wedding photography
+* Event coverage
+* Passport photos
+* Big-size photo printing
+* Lamination
+* Framing
+* Photo restoration
+* Digital photo storage
+
+Existing business assets:
+
+* Professional studio
+* Cameras and lenses
+* Lighting equipment
+* Printing machines
+* Lamination machines
+* Framing machines
+* Editing workstations
+* Staff and operators
+
+The business is operational offline and wants digital transformation.
+
+⸻
+
+3. Project Objectives
+
+Main objectives:
+
+* Increase brand visibility
+* Generate online leads
+* Accept online bookings
+* Improve customer experience
+* Digitize operations
+* Increase printing and framing sales
+* Build scalable infrastructure
+* Automate internal workflow
+
+⸻
+
+4. Scope of Work
+
+The project includes:
+
+* Corporate website
+* Portfolio gallery
+* Booking platform
+* Printing order system
+* Customer portal
+* Photo archive system
+* Admin dashboard
+* Payment integration
+* Notification system
+
+⸻
+
+5. User Roles
+
+5.1 Super Admin
+
+Permissions:
+
+* Full platform control
+* Manage users
+* Manage pricing
+* View reports
+* Access analytics
+* Configure settings
+
+⸻
+
+5.2 Staff
+
+Permissions:
+
+* View bookings
+* Process orders
+* Upload customer photos
+* Update production status
+* Manage delivery/pickup
+
+⸻
+
+5.3 Customer
+
+Permissions:
+
+* Browse website
+* Register/Login
+* Book services
+* Upload photos
+* Make payments
+* Access gallery
+* Download files
+* Reorder prints
+
+⸻
+
+6. Public Website Modules
+
+Homepage
+
+Sections:
+
+* Hero banner
+* Featured works
+* Service highlights
+* Customer testimonials
+* Call-to-action buttons
+* Contact preview
+
+Features:
+
+* Smooth animations
+* Fast loading
+* Responsive design
+
+⸻
+
+About Page
+
+Content:
+
+* Company story
+* Mission
+* Vision
+* Team
+* Why choose us
+
+⸻
+
+Services Page
+
+Categories:
+
+Photography Services
+
+* Portrait
+* Family
+* Graduation
+* Wedding
+* Events
+* Passport
+
+Printing Services
+
+* Standard print
+* Large print
+* Poster print
+* Canvas print
+
+Finishing Services
+
+* Lamination
+* Framing
+* Albums
+
+⸻
+
+Portfolio Page
+
+Gallery categories:
+
+* Weddings
+* Portraits
+* Events
+* Studio work
+* Print samples
+
+Features:
+
+* Filter by category
+* Fullscreen preview
+* Lazy loading
+
+⸻
+
+Pricing Page
+
+Display:
+
+* Studio packages
+* Wedding packages
+* Print pricing
+* Frame pricing
+* Custom quotation
+
+⸻
+
+Contact Page
+
+Include:
+
+* Address
+* Google Map
+* Phone
+* WhatsApp
+* Email
+* Contact form
+
+⸻
+
+7. Booking Management System
+
+Customers can book:
+
+* Studio session
+* Wedding shoot
+* Event shoot
+* Consultation
+
+Booking form fields:
+
+* Full name
+* Phone
+* Email
+* Service
+* Preferred date
+* Preferred time
+* Notes
+
+Features:
+
+* Availability calendar
+* Double-booking prevention
+* Booking history
+* Approval workflow
+
+Booking statuses:
+
+* Pending
+* Approved
+* Rejected
+* Completed
+
+⸻
+
+8. Printing Order System
+
+Customers upload files.
+
+Supported formats:
+
+* JPG
+* PNG
+* TIFF
+* PDF
+
+Order configuration:
+
+* Print size
+* Quantity
+* Paper type
+* Finish (Gloss / Matte)
+* Lamination
+* Frame option
+
+Workflow:
+
+1. Upload image
+2. Configure order
+3. Price calculation
+4. Checkout
+5. Payment
+6. Production
+7. Pickup/Delivery
+
+Order statuses:
+
+* Pending
+* Paid
+* In Production
+* Ready
+* Delivered
+
+⸻
+
+9. Photo Storage Portal
+
+Customers access personal gallery.
+
+Features:
+
+* Register/Login
+* Secure personal albums
+* Download purchased files
+* Reprint previous photos
+* Cloud backup
+* Search by event/date
+
+Use cases:
+
+* Wedding gallery
+* Family archives
+* Old photo recovery
+
+Storage requirements:
+
+* Large media support
+* Secure delivery
+* Fast retrieval
+
+⸻
+
+10. Admin Dashboard
+
+Dashboard cards:
+
+* Total revenue
+* New customers
+* Pending bookings
+* Orders today
+* Monthly performance
+
+Management modules:
+
+* Users
+* Bookings
+* Orders
+* Payments
+* Gallery
+* Reports
+* Notifications
+* Settings
+
+Reports:
+
+* Daily sales
+* Monthly revenue
+* Service performance
+* Customer activity
+
+⸻
+
+11. Payment System
+
+Supported methods:
+
+* Mobile Money
+* Bank Transfer
+* Debit Card
+* Credit Card
+* Cash on Pickup
+
+Features:
+
+* Invoice generation
+* Payment verification
+* Refund management
+* Transaction history
+
+⸻
+
+12. Notification System
+
+Channels:
+
+* Email
+* SMS
+* WhatsApp
+
+Triggers:
+
+* Booking confirmation
+* Payment received
+* Order ready
+* Gallery uploaded
+
+Future:
+
+* Push notifications
+
+⸻
+
+13. Technical Architecture
+
+Frontend
+
+Recommended:
+
+* React
+* Next.js
+* TypeScript
+
+Requirements:
+
+* SEO optimized
+* SSR support
+* Responsive UI
+
+⸻
+
+Backend
+
+Recommended:
+
+* Node.js + Express
+    OR
+* Laravel
+
+Responsibilities:
+
+* Authentication
+* APIs
+* Business logic
+* Payment handling
+* Notifications
+
+⸻
+
+Database
+
+Recommended:
+
+* PostgreSQL
+    OR
+* MySQL
+
+Main tables:
+
+* Users
+* Bookings
+* Orders
+* Payments
+* Galleries
+* Services
+* Notifications
+* Settings
+
+⸻
+
+Storage
+
+Recommended:
+
+* AWS S3
+    OR
+* Cloudinary
+
+Requirements:
+
+* Media optimization
+* CDN delivery
+* Backup
+
+⸻
+
+14. Security Requirements
+
+Must implement:
+
+* SSL
+* Password hashing
+* Role permissions
+* Rate limiting
+* Secure uploads
+* Encrypted storage
+* Audit logs
+* Backup system
+
+Compliance:
+
+* Secure customer data handling
+
+⸻
+
+15. UI / UX Requirements
+
+Design style:
+
+* Premium
+* Luxury
+* Minimal
+* Modern
+
+Brand colors:
+
+* Black
+* Gold
+* White
+
+Requirements:
+
+* Smooth animation
+* Clean layout
+* Easy navigation
+* Mobile-first design
+
+Supported devices:
+
+* Desktop
+* Tablet
+* Mobile
+
+⸻
+
+16. Performance Requirements
+
+Website must:
+
+* Load under 3 seconds
+* Optimize images
+* Lazy load galleries
+* Cache static content
+* Support high traffic
+
+Scalability target:
+
+* 10,000+ customers
+* 100,000+ media files
+
+⸻
+
+17. SEO Requirements
+
+Target keywords:
+
+* Photography studio Kigali
+* Wedding photographer Rwanda
+* Photo printing Kigali
+* Photo framing Kigali
+* Big-size photo printing Rwanda
+
+Technical SEO:
+
+* Meta tags
+* Sitemap.xml
+* Robots.txt
+* Schema markup
+* Open Graph
+* Image alt optimization
+
+⸻
+
+18. Third-Party Integrations
+
+Required:
+
+* Google Maps
+* WhatsApp Chat
+* Email SMTP
+* Analytics
+* Payment Gateway
+
+Optional:
+
+* CRM
+* SMS Provider
+* AI enhancement tools
+
+⸻
+
+19. API Requirements
+
+Required APIs:
+
+* Authentication API
+* Booking API
+* Order API
+* Payment API
+* Gallery API
+* Admin API
+* Notification API
+
+Response format:
+
+* JSON REST API
+
+Authentication:
+
+* JWT
+    OR
+* Session-based
+
+⸻
+
+20. Testing Requirements
+
+Required testing:
+
+* Unit testing
+* Integration testing
+* UI testing
+* Security testing
+* Payment testing
+
+QA checklist:
+
+* No broken pages
+* No booking conflicts
+* Secure uploads
+* Mobile compatibility
+
+⸻
+
+21. Deployment Requirements
+
+Production setup:
+
+* Domain
+* Hosting
+* Database
+* SSL
+* CDN
+* Backup server
+
+Environments:
+
+* Development
+* Staging
+* Production
+
+Deployment pipeline:
+
+* Git
+* CI/CD preferred
+
+⸻
+
+22. Deliverables
+
+Design Deliverables
+
+* Wireframes
+* Design system
+* Final prototype
+
+Development Deliverables
+
+* Frontend application
+* Backend API
+* Database architecture
+* Admin dashboard
+* API documentation
+
+Deployment Deliverables
+
+* Hosting setup
+* Domain connection
+* SSL setup
+* Production release
+
+⸻
+
+23. Timeline
+
+Planning — 3 days
+UI/UX Design — 7 days
+Frontend Development — 14 days
+Backend Development — 18 days
+Testing — 7 days
+Deployment — 3 days
+
+Total Estimated Duration:
+6–8 Weeks
+
+⸻
+
+24. Future Enhancements (Phase 2)
+
+Planned upgrades:
+
+* AI photo enhancement
+* Face recognition search
+* Mobile application
+* Subscription plans
+* Loyalty system
+* Delivery tracking
+* QR pickup system
+
+⸻
+
+25. Final Summary
+
+EyeInStudio.com will be a complete enterprise-grade digital system for managing a modern photography business.
+
+Core capabilities:
+
+* Business website
+* Portfolio
+* Online booking
+* Printing management
+* Photo storage
+* Payment processing
+* Business analytics
+
+Final platform must be:
+
+* Scalable
+* Secure
+* Modern
+* Production-ready
+
+⸻
+
+Prepared by Mado Creatives LTD
+Kigali, Rwanda

@@ -1,4 +1,58 @@
 import { getDb } from "@/lib/mongodb";
-export const dynamic="force-dynamic";
-async function stats(){try{const db=await getDb();const[bookings,orders,pending]=await Promise.all([db.collection("bookings").countDocuments(),db.collection("orders").countDocuments(),db.collection("bookings").countDocuments({status:"Pending"})]);return{bookings,orders,pending,connected:true}}catch{return{bookings:0,orders:0,pending:0,connected:false}}}
-export default async function AdminPage(){const s=await stats();return <section className="min-h-screen pb-24 pt-32"><div className="container-shell"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="eyebrow">Operations</p><h1 className="display mt-3 text-5xl">Studio overview</h1></div><span className={`rounded-full px-3 py-1 text-xs ${s.connected?"bg-emerald-950 text-emerald-300":"bg-amber-950 text-amber-300"}`}>{s.connected?"Database connected":"Database unavailable"}</span></div><div className="mt-10 grid gap-4 sm:grid-cols-3">{[["Total bookings",s.bookings],["Pending requests",s.pending],["Print orders",s.orders]].map(([label,value])=><article key={String(label)} className="panel p-7"><p className="text-xs uppercase tracking-wider text-stone-500">{label}</p><strong className="display mt-4 block text-5xl text-gold-light">{value}</strong></article>)}</div><div className="panel mt-6 p-8"><h2 className="display text-3xl">Production workspace</h2><p className="mt-3 text-stone-400">Booking approval, order status, payments and staff permissions are ready for the next secured admin phase.</p></div></div></section>}
+
+export const dynamic = "force-dynamic";
+
+async function stats() {
+  try {
+    const db = await getDb();
+    const [bookings, orders, pending] = await Promise.all([
+      db.collection("bookings").countDocuments(),
+      db.collection("orders").countDocuments(),
+      db.collection("bookings").countDocuments({ status: "Pending" }),
+    ]);
+    return { bookings, orders, pending, connected: true };
+  } catch {
+    return { bookings: 0, orders: 0, pending: 0, connected: false };
+  }
+}
+
+export default async function AdminPage() {
+  const s = await stats();
+  return (
+    <section className="min-h-screen bg-[color:var(--background)] pb-24 pt-32">
+      <div className="container-shell">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow">Operations</p>
+            <h1 className="display mt-3 text-5xl">Studio overview</h1>
+          </div>
+          <span
+            className={`rounded-full px-3 py-1 text-xs ${
+              s.connected ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"
+            }`}
+          >
+            {s.connected ? "Database connected" : "Database unavailable"}
+          </span>
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {[
+            ["Total bookings", s.bookings],
+            ["Pending requests", s.pending],
+            ["Print orders", s.orders],
+          ].map(([label, value]) => (
+            <article key={String(label)} className="panel p-7">
+              <p className="text-xs uppercase tracking-[.16em] text-[color:var(--muted)]">{label}</p>
+              <strong className="display mt-4 block text-5xl text-[color:var(--foreground)]">{value}</strong>
+            </article>
+          ))}
+        </div>
+        <div className="panel mt-6 p-8">
+          <h2 className="display text-3xl">Production workspace</h2>
+          <p className="mt-3 text-[color:var(--muted)]">
+            Booking approval, order status, payments and staff permissions are ready for the next secured admin phase.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

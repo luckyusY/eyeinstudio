@@ -10,10 +10,10 @@ const display = Cormorant_Garamond({ variable: "--font-display", subsets: ["lati
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://eyeinstudio.com"),
-  title: { default: "Eye in Studio | Photography & Printing in Kigali", template: "%s | Eye in Studio" },
-  description: "Premium photography, photo printing, framing and lamination services in Remera, Kigali.",
-  keywords: ["Photography studio Kigali", "Wedding photographer Rwanda", "Photo printing Kigali", "Photo framing Kigali"],
-  openGraph: { title: "Eye in Studio", description: "Your moments, thoughtfully captured and beautifully finished.", type: "website", locale: "en_RW" },
+  title: { default: "Eye in Studio | Corporate Event Photography in Kigali", template: "%s | Eye in Studio" },
+  description: "Conference, corporate event, gala and training photography by Patience Rucas — based in Kigali, Rwanda.",
+  keywords: ["Corporate event photographer Kigali", "Conference photographer Rwanda", "Event photography Kigali", "Gala photography Rwanda"],
+  openGraph: { title: "Eye in Studio", description: "Conference, corporate event and editorial photography from Kigali.", type: "website", locale: "en_RW" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

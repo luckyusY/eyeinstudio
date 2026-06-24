@@ -1,3 +1,46 @@
-import type { Metadata } from "next";import Image from "next/image";import { portfolio } from "@/lib/site-data";
-export const metadata:Metadata={title:"Portfolio",description:"Wedding, portrait, event and studio photography by Eye in Studio Kigali."};
-export default function PortfolioPage(){return <section className="min-h-screen pb-24 pt-36"><div className="container-shell"><p className="eyebrow">Selected work</p><h1 className="display mt-4 text-6xl sm:text-7xl">Stories, honestly seen.</h1><p className="mt-5 max-w-xl leading-7 text-stone-400">A collection of people, promises and fleeting moments from Kigali and beyond.</p><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{portfolio.map((item,i)=><article key={item.src} className={i%4===0?"sm:col-span-2":""}><div className={`group relative overflow-hidden ${i%4===0?"aspect-[16/9]":"aspect-[4/5]"}`}><Image fill src={item.src} alt={`${item.category}: ${item.title}`} className="object-cover transition duration-700 group-hover:scale-105"/></div><div className="flex items-end justify-between border-b hairline py-4"><h2 className="display text-2xl">{item.title}</h2><span className="eyebrow">{item.category}</span></div></article>)}</div></div></section>}
+import type { Metadata } from "next";
+import Image from "next/image";
+import { GalleryBrowser } from "@/components/gallery-browser";
+import { albums, allPhotos } from "@/lib/portfolio-data";
+
+export const metadata: Metadata = {
+  title: "Portfolio",
+  description: "Conference, corporate event, gala and training photography from Kigali by Eye in Studio.",
+};
+
+export default function PortfolioPage() {
+  const heroPhoto = allPhotos[0]?.src ?? "";
+  const totalPhotos = allPhotos.length;
+  const totalAlbums = albums.filter((a) => a.photos.length > 0).length;
+
+  return (
+    <>
+      <section className="relative flex min-h-[58vh] items-end overflow-hidden pb-14 pt-32">
+        {heroPhoto && (
+          <Image
+            src={heroPhoto}
+            alt="Recent work by Eye in Studio"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        )}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,18,15,.25),rgba(20,18,15,.78))]" />
+        <div className="container-shell relative">
+          <p className="eyebrow !text-white/85">The archive</p>
+          <h1 className="display mt-3 text-6xl text-white sm:text-8xl">Our work</h1>
+          <p className="mt-4 max-w-xl text-base leading-7 text-white/90">
+            {totalPhotos} photographs across {totalAlbums} {totalAlbums === 1 ? "album" : "albums"} — recent conferences,
+            corporate events, galas and training sessions from Kigali and beyond.
+          </p>
+        </div>
+      </section>
+      <section className="bg-[color:var(--background)] pb-24 pt-8">
+        <div className="container-shell">
+          <GalleryBrowser />
+        </div>
+      </section>
+    </>
+  );
+}

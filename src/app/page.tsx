@@ -4,6 +4,7 @@ import { ArrowRight, Camera, Mic2, Sparkles, Users } from "lucide-react";
 import { services, stats } from "@/lib/site-data";
 import { albums, allPhotos } from "@/lib/portfolio-data";
 import { HeroSlider } from "@/components/hero-slider";
+import { Reveal } from "@/components/reveal";
 
 const serviceIcons = [Mic2, Camera, Sparkles, Users];
 
@@ -62,7 +63,7 @@ export default function Home() {
       {/* Welcome / services intro */}
       <section className="bg-[color:var(--background)] py-24 lg:py-32">
         <div className="container-shell grid gap-14 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
-          <div>
+          <Reveal>
             <p className="eyebrow">What we cover</p>
             <h2 className="display mt-4 text-5xl leading-[.95] sm:text-6xl">
               Welcome to the home<br />of event photography.
@@ -74,8 +75,8 @@ export default function Home() {
             <Link href="/services" className="btn-link mt-8">
               All services <ArrowRight className="size-3" />
             </Link>
-          </div>
-          <div className="grid gap-px bg-[color:var(--line)] sm:grid-cols-2">
+          </Reveal>
+          <Reveal stagger className="grid gap-px bg-[color:var(--line)] sm:grid-cols-2">
             {services.map((s, i) => {
               const Icon = serviceIcons[i] ?? Camera;
               return (
@@ -92,26 +93,26 @@ export default function Home() {
                 </article>
               );
             })}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Stats strip */}
       <section className="border-y border-[color:var(--line)] bg-[color:var(--surface-muted)] py-14">
-        <div className="container-shell grid grid-cols-2 gap-10 md:grid-cols-4">
+        <Reveal stagger className="container-shell grid grid-cols-2 gap-10 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="text-center md:text-left">
               <p className="display text-5xl text-[color:var(--foreground)] sm:text-6xl">{s.value}</p>
               <p className="mt-2 text-[11px] uppercase tracking-[.18em] text-[color:var(--muted)]">{s.label}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* Featured portfolio grid */}
       <section className="bg-[color:var(--background)] py-24 lg:py-32">
         <div className="container-shell">
-          <div className="flex flex-wrap items-end justify-between gap-6">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Selected stories</p>
               <h2 className="display mt-4 text-5xl sm:text-6xl">Through our eyes.</h2>
@@ -119,8 +120,8 @@ export default function Home() {
             <Link href="/portfolio" className="btn-ghost">
               Full portfolio <ArrowRight className="size-4" />
             </Link>
-          </div>
-          <div className="mt-12 grid auto-rows-[260px] gap-3 md:grid-cols-3">
+          </Reveal>
+          <Reveal stagger className="mt-12 grid auto-rows-[260px] gap-3 md:grid-cols-3">
             {featured.slice(0, 5).map((item, index) => (
               <Link
                 href="/portfolio"
@@ -144,14 +145,14 @@ export default function Home() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* About */}
       <section id="about" className="bg-[color:var(--surface)] py-24 lg:py-32">
         <div className="container-shell grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div className="relative min-h-[560px]">
+          <Reveal className="relative min-h-[560px]">
             {aboutImage && (
               <Image
                 src={aboutImage}
@@ -165,8 +166,8 @@ export default function Home() {
               <strong className="display block text-5xl text-[color:var(--accent)]">10+</strong>
               <span className="text-xs uppercase tracking-[.16em] text-[color:var(--muted)]">Years of craft</span>
             </div>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={0.1}>
             <p className="eyebrow">The studio</p>
             <h2 className="display mt-4 text-5xl leading-[.95] sm:text-6xl">
               A patient eye.<br />A complete record.
@@ -182,7 +183,7 @@ export default function Home() {
             <Link href="/booking" className="btn-primary mt-8">
               Plan your shoot <ArrowRight className="size-4" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 

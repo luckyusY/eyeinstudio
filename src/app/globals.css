@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf7;       /* warm off-white page */
+  --background: #ffffff;       /* pure white page (minimal, photo-forward) */
   --surface: #ffffff;          /* card / inner surface */
-  --surface-muted: #f3efe8;    /* subtle alt section */
-  --foreground: #1a1815;       /* near-black with warm undertone */
-  --muted: #6b6660;            /* secondary text */
-  --soft: #9b948a;             /* tertiary text / icons */
-  --accent: #8a6d3b;           /* muted bronze accent */
-  --accent-soft: #b89568;
-  --line: rgba(26, 24, 21, 0.10);
-  --line-strong: rgba(26, 24, 21, 0.18);
+  --surface-muted: #f6f6f5;    /* barely-there alt section */
+  --foreground: #111111;       /* near-black */
+  --muted: #555555;            /* secondary text */
+  --soft: #8a8a8a;             /* tertiary text / icons */
+  --accent: #111111;           /* no color accent — accent reads as near-black */
+  --accent-soft: #444444;
+  --line: rgba(17, 17, 17, 0.10);
+  --line-strong: rgba(17, 17, 17, 0.16);
 }
 
 @theme inline {
@@ -50,9 +50,10 @@ button, input, select, textarea { font: inherit; }
   font-weight: 600;
 }
 
+/* Minimal, photo-forward display type — clean sans like the reference. */
 .display {
-  font-family: var(--font-display), Georgia, serif;
-  letter-spacing: -.018em;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  letter-spacing: -.02em;
   font-weight: 500;
 }
 
@@ -76,7 +77,7 @@ button, input, select, textarea { font: inherit; }
   border: 1px solid var(--foreground);
   transition: .2s ease;
 }
-.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-soft); border-color: var(--accent-soft); }
 
 .btn-ghost {
   display: inline-flex;
@@ -129,12 +130,38 @@ button, input, select, textarea { font: inherit; }
   border: 1px solid var(--line);
 }
 
-/* Subtle reveal on scroll-in */
+/* Lenis smooth scroll (https://github.com/darkroomengineering/lenis) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Subtle reveal on scroll-in (CSS fallback when JS/GSAP is absent) */
 @keyframes reveal {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .reveal { animation: reveal .7s ease both; }
+
+/* Pre-hide GSAP-revealed nodes only when JS is active, to avoid a flash of
+   content before the scroll animation initialises. Cleared by gsap on mount. */
+.gsap-reveal:not(.is-ready) { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .gsap-reveal { opacity: 1 !important; }
+}
+
+/* Animated film-grain canvas accent */
+.grain-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
 
 /* Hero slide progress bar */
 @keyframes hero-progress {
@@ -143,8 +170,17 @@ button, input, select, textarea { font: inherit; }
 }
 .hero-progress { animation: hero-progress 6.5s linear both; }
 
+/* Slow Ken Burns drift on hero photos */
+@keyframes kenburns {
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.12); }
+}
+.kenburns { animation: kenburns 9s ease-out both; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-progress { animation: none; width: 100%; }
+  .kenburns { animation: none; }
+  .grain-canvas { display: none; }
   * { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }

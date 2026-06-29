@@ -40,8 +40,12 @@ export default function ServicesPage() {
         </p>
 
         <div className="mt-16 grid gap-px bg-[color:var(--line)] md:grid-cols-2">
-          {services.map((s) => (
-            <article className="bg-[color:var(--background)] p-8 sm:p-12" key={s.title}>
+          {services.map((s, index) => (
+            <article
+              id={index === 0 ? "headshots" : index === 1 ? "branding" : undefined}
+              className="scroll-mt-28 bg-[color:var(--background)] p-8 sm:p-12"
+              key={s.title}
+            >
               <span className="font-mono text-xs text-[color:var(--accent)]">{s.icon}</span>
               <h2 className="display mt-12 text-4xl">{s.title}</h2>
               <p className="mt-4 max-w-md leading-7 text-[color:var(--muted)]">{s.description}</p>
@@ -49,7 +53,7 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        <div className="mt-24">
+        <div id="pricing" className="mt-24 scroll-mt-28">
           <p className="eyebrow">Starting points</p>
           <h2 className="display mt-4 text-5xl">Simple packages, tailored to you.</h2>
           <div className="mt-9 grid gap-4 lg:grid-cols-3">

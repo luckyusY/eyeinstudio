@@ -1,53 +1,84 @@
 import Link from "next/link";
-import { Camera, Mail, MapPin, Phone } from "lucide-react";
+import { Camera, Mail, MapPin, Phone, Sparkles } from "lucide-react";
+
+const columns = [
+  {
+    title: "Sessions",
+    links: [
+      ["Fashion", "/portfolio"],
+      ["Headshots", "/services#headshots"],
+      ["Branding", "/services#branding"],
+      ["Events", "/services"],
+    ],
+  },
+  {
+    title: "Studio",
+    links: [
+      ["Gallery", "/portfolio"],
+      ["Pricing", "/services#pricing"],
+      ["Book now", "/booking"],
+      ["Print order", "/print"],
+    ],
+  },
+] as const;
 
 export function SiteFooter() {
   return (
-    <footer id="contact" className="border-t border-[color:var(--line)] bg-[color:var(--surface-muted)] py-20">
-      <div className="container-wide grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+    <footer id="contact" className="border-t border-[color:var(--line)] bg-[color:var(--foreground)] text-white">
+      <div className="container-wide grid gap-12 py-20 lg:grid-cols-[1.2fr_.8fr_.8fr_1fr]">
         <div>
-          <p className="display text-3xl text-[color:var(--foreground)]">Eye in Studio</p>
-          <p className="mt-4 max-w-xs text-sm leading-7 text-[color:var(--muted)]">
-            Corporate event, conference and editorial photography by Patience Rucas — crafted in Kigali, delivered worldwide.
+          <p className="display text-5xl tracking-[-.05em]">EyeinStudio</p>
+          <p className="mt-5 max-w-sm text-sm leading-7 text-white/66">
+            Portrait, branding and event photography in Kigali — classic, image-first and calmly directed.
           </p>
+          <Link href="/booking" className="mt-8 inline-flex border border-white px-6 py-3 text-[10px] font-semibold uppercase tracking-[.2em] transition hover:bg-white hover:text-[color:var(--foreground)]">
+            Book a session
+          </Link>
         </div>
+
+        {columns.map((column) => (
+          <div key={column.title}>
+            <p className="text-[10px] font-semibold uppercase tracking-[.24em] text-white/48">{column.title}</p>
+            <div className="mt-5 flex flex-col gap-3 text-sm text-white/78">
+              {column.links.map(([label, href]) => (
+                <Link key={label} href={href} className="transition hover:text-white">
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+
         <div>
-          <p className="eyebrow">Visit</p>
-          <p className="mt-5 flex gap-3 text-sm text-[color:var(--foreground)]">
-            <MapPin className="size-4 mt-0.5 text-[color:var(--accent)]" /> Remera, Kigali, Rwanda
-          </p>
-          <p className="mt-3 text-sm text-[color:var(--muted)]">Mon–Sat · 8:00–19:00</p>
-        </div>
-        <div>
-          <p className="eyebrow">Talk to us</p>
-          <a className="mt-5 flex gap-3 text-sm text-[color:var(--foreground)] hover:text-[color:var(--accent)]" href="tel:+250788000000">
-            <Phone className="size-4 mt-0.5 text-[color:var(--accent)]" /> +250 788 000 000
-          </a>
-          <a className="mt-3 flex gap-3 text-sm text-[color:var(--foreground)] hover:text-[color:var(--accent)]" href="mailto:hello@eyeinstudio.com">
-            <Mail className="size-4 mt-0.5 text-[color:var(--accent)]" /> hello@eyeinstudio.com
-          </a>
-        </div>
-        <div>
-          <p className="eyebrow">Explore</p>
-          <div className="mt-5 flex flex-col gap-3 text-sm text-[color:var(--foreground)]">
-            <Link href="/portfolio" className="hover:text-[color:var(--accent)]">Portfolio</Link>
-            <Link href="/services" className="hover:text-[color:var(--accent)]">Services</Link>
-            <Link href="/booking" className="hover:text-[color:var(--accent)]">Book a session</Link>
-            <Link href="/print" className="hover:text-[color:var(--accent)]">Order prints</Link>
+          <p className="text-[10px] font-semibold uppercase tracking-[.24em] text-white/48">Contact</p>
+          <div className="mt-5 space-y-4 text-sm text-white/78">
+            <p className="flex gap-3">
+              <MapPin className="mt-0.5 size-4 text-white/52" /> Remera, Kigali, Rwanda
+            </p>
+            <a className="flex gap-3 transition hover:text-white" href="tel:+250788000000">
+              <Phone className="mt-0.5 size-4 text-white/52" /> +250 788 000 000
+            </a>
+            <a className="flex gap-3 transition hover:text-white" href="mailto:hello@eyeinstudio.com">
+              <Mail className="mt-0.5 size-4 text-white/52" /> hello@eyeinstudio.com
+            </a>
             <a
-              className="flex items-center gap-2 hover:text-[color:var(--accent)]"
+              className="flex gap-3 transition hover:text-white"
               href="https://www.flickr.com/photos/eyeinstudio/albums/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Camera className="size-4" /> Flickr archive
+              <Camera className="mt-0.5 size-4 text-white/52" /> Flickr archive
+            </a>
+            <a className="flex gap-3 transition hover:text-white" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+              <Sparkles className="mt-0.5 size-4 text-white/52" /> Instagram
             </a>
           </div>
         </div>
       </div>
-      <div className="container-wide mt-14 flex flex-col gap-3 border-t border-[color:var(--line)] pt-7 text-xs text-[color:var(--muted)] md:flex-row md:items-center md:justify-between">
-        <span>© {new Date().getFullYear()} Eye in Studio. All moments reserved.</span>
-        <span>Photography by Patience Rucas</span>
+
+      <div className="container-wide flex flex-col gap-3 border-t border-white/12 py-7 text-xs text-white/48 md:flex-row md:items-center md:justify-between">
+        <span>© {new Date().getFullYear()} EyeinStudio. All moments reserved.</span>
+        <span>Designed for timeless photography, not disposable trends.</span>
       </div>
     </footer>
   );

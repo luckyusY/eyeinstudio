@@ -8,6 +8,7 @@ import { prefersReducedMotion, useIsomorphicLayoutEffect } from "@/lib/use-isomo
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
+  id?: string;
   as?: ElementType;
   /** vertical offset to travel from */
   y?: number;
@@ -25,6 +26,7 @@ type RevealProps = {
 export function Reveal({
   children,
   className,
+  id,
   as: Tag = "div",
   y = 28,
   delay = 0,
@@ -66,7 +68,7 @@ export function Reveal({
   }, [y, delay, stagger, duration]);
 
   return (
-    <Tag ref={ref} className={`gsap-reveal ${className ?? ""}`}>
+    <Tag id={id} ref={ref} className={`gsap-reveal ${className ?? ""}`}>
       {children}
     </Tag>
   );

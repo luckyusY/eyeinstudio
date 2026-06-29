@@ -31,24 +31,24 @@ function pickAlbumPhoto(slug: string, fallbackIndex: number): string {
 
 const slides: Slide[] = [
   {
-    word: "Conferences",
-    subhead: "From plenary stages to side-room conversations — every moment of your summit, documented with intent.",
+    word: "Portraits",
+    subhead: "Studio-polished portraits for founders, teams and creatives — directed gently, edited with restraint.",
     image: pickAlbumPhoto("iaom-mea-2025-day-1", 0),
-    alt: "IAOM MEA conference plenary in Kigali",
+    alt: "Portrait-style photography by EyeinStudio",
     position: "center 38%",
   },
   {
-    word: "Celebrations",
-    subhead: "Galas, dinners and recognition nights — the energy and the quiet pride, both held in frame.",
+    word: "Branding",
+    subhead: "Image sets for businesses and personal brands that need to look considered, confident and timeless.",
     image: pickAlbumPhoto("azam-dinner-feb-2025", 1),
-    alt: "Corporate dinner photographed by Eye in Studio",
+    alt: "Brand and corporate photography by EyeinStudio",
     position: "center 45%",
   },
   {
-    word: "Trainings",
-    subhead: "Workshops, classrooms and team off-sites — work moments captured with editorial care.",
+    word: "Events",
+    subhead: "From keynote stages to quiet conversations, your event is captured with a calm editorial eye.",
     image: pickAlbumPhoto("forever-trainings", 2),
-    alt: "Training session in Kigali",
+    alt: "Event photography by EyeinStudio",
     position: "center 42%",
   },
 ];
@@ -60,7 +60,6 @@ export function HeroSlider() {
   const wordRef = useRef<HTMLHeadingElement | null>(null);
   const subRef = useRef<HTMLParagraphElement | null>(null);
 
-  // One-time GSAP intro for the foreground content.
   useIsomorphicLayoutEffect(() => {
     const el = introRef.current;
     if (!el) return;
@@ -78,7 +77,6 @@ export function HeroSlider() {
     return () => ctx.revert();
   }, []);
 
-  // Animate the rotating word + subhead each time the slide changes.
   useEffect(() => {
     if (prefersReducedMotion()) return;
     const tl = gsap.timeline();
@@ -106,8 +104,8 @@ export function HeroSlider() {
   return (
     <section
       aria-roledescription="carousel"
-      aria-label="Eye in Studio highlights"
-      className="relative min-h-[92svh] overflow-hidden bg-[color:var(--surface-muted)]"
+      aria-label="EyeinStudio highlights"
+      className="relative min-h-[94svh] overflow-hidden bg-[color:var(--surface-muted)]"
     >
       <Swiper
         modules={[Autoplay, EffectFade]}
@@ -139,41 +137,39 @@ export function HeroSlider() {
         ))}
       </Swiper>
 
-      {/* Light wash so the foreground type stays legible */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.16)_0%,rgba(255,255,255,0)_38%,rgba(17,17,17,.58)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.28)_0%,rgba(255,255,255,.05)_35%,rgba(17,17,17,.62)_100%)]" />
 
       <div
         ref={introRef}
-        className="container-wide pointer-events-none relative flex min-h-[92svh] flex-col items-start justify-end pb-24 pt-36 text-left"
+        className="container-wide pointer-events-none relative flex min-h-[94svh] flex-col items-center justify-end pb-24 pt-36 text-center"
       >
         <p data-intro className="mb-5 text-[10px] font-semibold uppercase tracking-[.34em] text-white/90">
-          Eye in Studio · Kigali, Rwanda
+          EyeinStudio · Kigali photography studio
         </p>
 
-        <h1 ref={wordRef} className="display max-w-[14ch] text-white text-[16vw] leading-[.9] sm:text-[11vw] lg:text-[8.5rem]">
+        <h1 ref={wordRef} className="display max-w-[14ch] text-[17vw] leading-[.86] tracking-[-.06em] text-white sm:text-[12vw] lg:text-[9.5rem]">
           {slides[active].word}
         </h1>
         <p ref={subRef} className="mt-6 max-w-xl text-base leading-7 text-white/95 sm:text-lg">
           {slides[active].subhead}
         </p>
 
-        <div data-intro className="pointer-events-auto mt-10 flex flex-wrap gap-3">
+        <div data-intro className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
           <Link
             href="/booking"
-            className="btn-primary min-w-44 !bg-white !text-[color:var(--foreground)] !border-white hover:!bg-white/80"
+            className="btn-primary min-w-44 !border-white !bg-white !text-[color:var(--foreground)] hover:!bg-white/80"
           >
-            Request a callback <ArrowRight className="size-4" />
+            Book your shoot <ArrowRight className="size-4" />
           </Link>
           <Link
             href="/portfolio"
             className="btn-ghost min-w-44 !border-white/70 !text-white hover:!bg-white hover:!text-[color:var(--foreground)]"
           >
-            Explore our work
+            View gallery
           </Link>
         </div>
       </div>
 
-      {/* Slide controls */}
       <div className="absolute inset-x-0 bottom-7 z-10 mx-auto flex w-[min(30rem,calc(100%-3rem))] items-center justify-center gap-3">
         {slides.map((slide, index) => (
           <button

@@ -2,7 +2,7 @@
 import { CalendarDays, CheckCircle2, Loader2 } from "lucide-react";
 import { FormEvent, useState } from "react";
 
-const labelClass = "text-xs uppercase tracking-[.16em] text-[color:var(--muted)]";
+const labelClass = "text-[11px] font-bold uppercase tracking-[.12em] text-black";
 
 export function BookingForm() {
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -25,16 +25,16 @@ export function BookingForm() {
 
   if (state === "done")
     return (
-      <div className="panel p-10 text-center">
-        <CheckCircle2 className="mx-auto size-12 text-[color:var(--accent)]" />
-        <h2 className="display mt-5 text-3xl">Your request is in.</h2>
-        <p className="mt-3 text-[color:var(--muted)]">Our team will confirm availability with you shortly.</p>
+      <div className="border border-black/25 bg-white p-10 text-center">
+        <CheckCircle2 className="mx-auto size-12 text-black" />
+        <h2 className="mt-5 text-3xl font-black uppercase tracking-[-.04em] text-black">Your request is in.</h2>
+        <p className="mt-3 text-black/70">Our team will confirm availability with you shortly.</p>
         <button className="btn-ghost mt-7" onClick={() => setState("idle")}>Make another booking</button>
       </div>
     );
 
   return (
-    <form onSubmit={submit} className="panel grid gap-5 p-6 md:grid-cols-2 md:p-9">
+    <form onSubmit={submit} className="grid gap-5 bg-white md:grid-cols-2">
       <label className={labelClass}>Full name<input required name="name" className="field mt-2" placeholder="Your name" /></label>
       <label className={labelClass}>Phone<input required name="phone" type="tel" className="field mt-2" placeholder="+250 ..." /></label>
       <label className={labelClass}>Email<input required name="email" type="email" className="field mt-2" placeholder="you@example.com" /></label>

@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const footerLinks = [
-  ["Special offers", "/services#pricing"],
-  ["Privacy policy", "/privacy"],
-  ["Terms and conditions", "/terms"],
-  ["Special promos", "/booking"],
+  ["Services", "/services"],
+  ["Portfolio", "/portfolio"],
+  ["Pricing", "/services#pricing"],
+  ["Book a session", "/booking"],
 ] as const;
 
 export function SiteFooter() {

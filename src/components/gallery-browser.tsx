@@ -39,7 +39,7 @@ export function GalleryBrowser() {
 
   return (
     <>
-      <div className="flex flex-col gap-6 border-y border-[color:var(--line)] py-5 md:flex-row md:items-start md:justify-between">
+      <div className="flex flex-col gap-6 border-y border-black/25 py-5 md:flex-row md:items-start md:justify-between">
         <div role="group" aria-label="Filter by album" className="flex flex-wrap gap-2">
           {filterButtons.map(({ value, label, count }) => {
             const active = albumSlug === value;
@@ -49,25 +49,25 @@ export function GalleryBrowser() {
                 type="button"
                 aria-pressed={active}
                 onClick={() => setAlbumSlug(value)}
-                className={`rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[.1em] transition ${
+                className={`border px-4 py-2 text-[11px] font-bold uppercase tracking-[.08em] transition ${
                   active
-                    ? "border-[color:var(--foreground)] bg-[color:var(--foreground)] text-white"
-                    : "border-[color:var(--line-strong)] text-[color:var(--muted)] hover:border-[color:var(--foreground)] hover:text-[color:var(--foreground)]"
+                    ? "border-black bg-black text-white"
+                    : "border-black/25 text-black hover:border-black"
                 }`}
               >
-                {label} <span className={`ml-1 text-[10px] ${active ? "text-white/70" : "text-[color:var(--soft)]"}`}>{count}</span>
+                {label} <span className={`ml-1 text-[10px] ${active ? "text-white/70" : "text-black/45"}`}>{count}</span>
               </button>
             );
           })}
         </div>
 
-        <div role="group" aria-label="Gallery layout" className="flex shrink-0 items-center gap-1 self-end border border-[color:var(--line-strong)] p-1 md:self-auto">
+        <div role="group" aria-label="Gallery layout" className="flex shrink-0 items-center gap-1 self-end border border-black/25 p-1 md:self-auto">
           <button
             type="button"
             onClick={() => setLayout("masonry")}
             aria-label="Masonry layout"
             aria-pressed={layout === "masonry"}
-            className={`p-2 transition ${layout === "masonry" ? "bg-[color:var(--foreground)] text-white" : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"}`}
+            className={`p-2 transition ${layout === "masonry" ? "bg-black text-white" : "text-black/55 hover:text-black"}`}
           >
             <LayoutGrid className="size-4" />
           </button>
@@ -76,7 +76,7 @@ export function GalleryBrowser() {
             onClick={() => setLayout("grid")}
             aria-label="Uniform grid layout"
             aria-pressed={layout === "grid"}
-            className={`p-2 transition ${layout === "grid" ? "bg-[color:var(--foreground)] text-white" : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"}`}
+            className={`p-2 transition ${layout === "grid" ? "bg-black text-white" : "text-black/55 hover:text-black"}`}
           >
             <Grid2X2 className="size-4" />
           </button>
@@ -103,7 +103,7 @@ export function GalleryBrowser() {
           return (
             <article
               key={item.id}
-              className={`group relative mb-4 overflow-hidden bg-[color:var(--surface-muted)] ${layout === "masonry" ? "break-inside-avoid" : "mb-0"}`}
+              className={`group relative mb-4 overflow-hidden bg-neutral-100 ${layout === "masonry" ? "break-inside-avoid" : "mb-0"}`}
             >
               <button
                 type="button"
@@ -132,12 +132,12 @@ export function GalleryBrowser() {
       </div>
 
       {images.length === 0 && (
-        <p className="mt-12 text-center text-sm text-[color:var(--muted)]">
+        <p className="mt-12 text-center text-sm text-black/70">
           No photos yet for this selection. Run <code className="font-mono">node scripts/fetch-flickr.mjs</code> to populate.
         </p>
       )}
 
-      <p className="mt-8 text-center text-xs uppercase tracking-[.16em] text-[color:var(--soft)]">
+      <p className="mt-8 text-center text-xs font-bold uppercase tracking-[.12em] text-black/45">
         Showing {images.length} {images.length === 1 ? "photograph" : "photographs"}
       </p>
 

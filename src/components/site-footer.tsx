@@ -1,84 +1,41 @@
 import Link from "next/link";
-import { Camera, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 
-const columns = [
-  {
-    title: "Sessions",
-    links: [
-      ["Fashion", "/portfolio"],
-      ["Headshots", "/services#headshots"],
-      ["Branding", "/services#branding"],
-      ["Events", "/services"],
-    ],
-  },
-  {
-    title: "Studio",
-    links: [
-      ["Gallery", "/portfolio"],
-      ["Pricing", "/services#pricing"],
-      ["Book now", "/booking"],
-      ["Print order", "/print"],
-    ],
-  },
+const footerLinks = [
+  ["Special offers", "/services#pricing"],
+  ["Privacy policy", "/privacy"],
+  ["Terms and conditions", "/terms"],
+  ["Special promos", "/booking"],
 ] as const;
 
 export function SiteFooter() {
   return (
-    <footer id="contact" className="border-t border-[color:var(--line)] bg-[color:var(--foreground)] text-white">
-      <div className="container-wide grid gap-12 py-20 lg:grid-cols-[1.2fr_.8fr_.8fr_1fr]">
+    <footer className="bg-[#777] px-4 py-10 text-white sm:px-8 lg:px-12">
+      <div className="grid gap-10 text-[12px] leading-[1.35] lg:grid-cols-[1fr_1fr_1.4fr]">
         <div>
-          <p className="display text-5xl tracking-[-.05em]">EyeinStudio</p>
-          <p className="mt-5 max-w-sm text-sm leading-7 text-white/66">
-            Portrait, branding and event photography in Kigali — classic, image-first and calmly directed.
+          <p className="font-extrabold uppercase">Kigali Studio</p>
+          <p className="mt-3">Remera, Kigali, Rwanda</p>
+          <p className="mt-3 font-bold">Tel: +250 788 000 000</p>
+          <p className="mt-1 font-bold">Email: hello@eyeinstudio.com</p>
+        </div>
+
+        <div>
+          <p className="font-extrabold uppercase">Navigation</p>
+          <div className="mt-3 flex flex-col items-start gap-2 uppercase underline underline-offset-2">
+            {footerLinks.map(([label, href]) => (
+              <Link key={label} href={href} className="transition hover:text-black">
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="ella-logo text-4xl uppercase leading-none tracking-[-.07em]">Eyein Studio</p>
+          <p className="mt-5 max-w-md">
+            Portrait, branding and event photography in Kigali. Classic, image-first and calmly directed.
           </p>
-          <Link href="/booking" className="mt-8 inline-flex border border-white px-6 py-3 text-[10px] font-semibold uppercase tracking-[.2em] transition hover:bg-white hover:text-[color:var(--foreground)]">
-            Book a session
-          </Link>
+          <p className="mt-6 text-white/80">© {new Date().getFullYear()} Eyein Studio</p>
         </div>
-
-        {columns.map((column) => (
-          <div key={column.title}>
-            <p className="text-[10px] font-semibold uppercase tracking-[.24em] text-white/48">{column.title}</p>
-            <div className="mt-5 flex flex-col gap-3 text-sm text-white/78">
-              {column.links.map(([label, href]) => (
-                <Link key={label} href={href} className="transition hover:text-white">
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[.24em] text-white/48">Contact</p>
-          <div className="mt-5 space-y-4 text-sm text-white/78">
-            <p className="flex gap-3">
-              <MapPin className="mt-0.5 size-4 text-white/52" /> Remera, Kigali, Rwanda
-            </p>
-            <a className="flex gap-3 transition hover:text-white" href="tel:+250788000000">
-              <Phone className="mt-0.5 size-4 text-white/52" /> +250 788 000 000
-            </a>
-            <a className="flex gap-3 transition hover:text-white" href="mailto:hello@eyeinstudio.com">
-              <Mail className="mt-0.5 size-4 text-white/52" /> hello@eyeinstudio.com
-            </a>
-            <a
-              className="flex gap-3 transition hover:text-white"
-              href="https://www.flickr.com/photos/eyeinstudio/albums/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Camera className="mt-0.5 size-4 text-white/52" /> Flickr archive
-            </a>
-            <a className="flex gap-3 transition hover:text-white" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-              <Sparkles className="mt-0.5 size-4 text-white/52" /> Instagram
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="container-wide flex flex-col gap-3 border-t border-white/12 py-7 text-xs text-white/48 md:flex-row md:items-center md:justify-between">
-        <span>© {new Date().getFullYear()} EyeinStudio. All moments reserved.</span>
-        <span>Designed for timeless photography, not disposable trends.</span>
       </div>
     </footer>
   );

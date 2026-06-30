@@ -1,197 +1,78 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperClass } from "swiper/types";
-import { Autoplay, EffectFade } from "swiper/modules";
-import { gsap } from "gsap";
-import { albums } from "@/lib/portfolio-data";
-import { prefersReducedMotion, useIsomorphicLayoutEffect } from "@/lib/use-isomorphic-layout-effect";
 
-import "swiper/css";
-import "swiper/css/effect-fade";
-
-type Slide = {
-  word: string;
-  subhead: string;
-  image: string;
-  alt: string;
-  position?: string;
-};
-
-function pickAlbumPhoto(slug: string, fallbackIndex: number): string {
-  const exact = albums.find((a) => a.slug === slug);
-  if (exact && exact.photos.length > 0) return exact.photos[0].src;
-  const fallback = albums.flatMap((a) => a.photos)[fallbackIndex];
-  return fallback?.src ?? "";
-}
-
-const slides: Slide[] = [
-  {
-    word: "Portraits",
-    subhead: "Studio-polished portraits for founders, teams and creatives — directed gently, edited with restraint.",
-    image: pickAlbumPhoto("iaom-mea-2025-day-1", 0),
-    alt: "Portrait-style photography by EyeinStudio",
-    position: "center 38%",
-  },
-  {
-    word: "Branding",
-    subhead: "Image sets for businesses and personal brands that need to look considered, confident and timeless.",
-    image: pickAlbumPhoto("azam-dinner-feb-2025", 1),
-    alt: "Brand and corporate photography by EyeinStudio",
-    position: "center 45%",
-  },
-  {
-    word: "Events",
-    subhead: "From keynote stages to quiet conversations, your event is captured with a calm editorial eye.",
-    image: pickAlbumPhoto("forever-trainings", 2),
-    alt: "Event photography by EyeinStudio",
-    position: "center 42%",
-  },
-];
+const heroImages = {
+  main: "/portfolio/azam-dinner-feb-2025/55151721221.jpg",
+  smallOne: "/portfolio/forever-success-day-2026/55150921707.jpg",
+  smallTwo: "/portfolio/forever-trainings/55152028244.jpg",
+} as const;
 
 export function HeroSlider() {
-  const [active, setActive] = useState(0);
-  const swiperRef = useRef<SwiperClass | null>(null);
-  const introRef = useRef<HTMLDivElement | null>(null);
-  const wordRef = useRef<HTMLHeadingElement | null>(null);
-  const subRef = useRef<HTMLParagraphElement | null>(null);
-
-  useIsomorphicLayoutEffect(() => {
-    const el = introRef.current;
-    if (!el) return;
-    if (prefersReducedMotion()) {
-      gsap.set(el.querySelectorAll("[data-intro]"), { autoAlpha: 1, y: 0 });
-      return;
-    }
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el.querySelectorAll("[data-intro]"),
-        { y: 36, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out", stagger: 0.14, delay: 0.2 },
-      );
-    }, el);
-    return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-    const tl = gsap.timeline();
-    if (wordRef.current) {
-      tl.fromTo(
-        wordRef.current,
-        { yPercent: 45, autoAlpha: 0 },
-        { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "power4.out" },
-        0,
-      );
-    }
-    if (subRef.current) {
-      tl.fromTo(
-        subRef.current,
-        { y: 18, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
-        0.12,
-      );
-    }
-    return () => {
-      tl.kill();
-    };
-  }, [active]);
-
   return (
-    <section
-      aria-roledescription="carousel"
-      aria-label="EyeinStudio highlights"
-      className="relative min-h-[94svh] overflow-hidden bg-[color:var(--surface-muted)]"
-    >
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        speed={1200}
-        loop
-        autoplay={{ delay: 5200, disableOnInteraction: false }}
-        onSwiper={(s) => (swiperRef.current = s)}
-        onSlideChange={(s) => setActive(s.realIndex)}
-        className="absolute inset-0 !h-full !w-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={slide.word}>
-            <div className="relative h-full w-full overflow-hidden">
-              {slide.image && (
-                <Image
-                  src={slide.image}
-                  alt={slide.alt}
-                  fill
-                  priority={index === 0}
-                  sizes="100vw"
-                  className="kenburns object-cover"
-                  style={{ objectPosition: slide.position ?? "center" }}
-                />
-              )}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <section className="bg-white px-4 pb-14 pt-6 sm:px-8 lg:px-12">
+      <div className="grid gap-7 lg:grid-cols-[31%_1fr] lg:items-start">
+        <div className="max-w-[28rem]">
+          <h1 className="max-w-[22rem] text-[clamp(1.5rem,2vw,2.25rem)] font-black leading-[1.28] tracking-[-.03em] text-black">
+            Welcome to Eyein Studio — a premier photography studio in Kigali, where creativity, care and memorable photography come
+            together.
+          </h1>
 
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.28)_0%,rgba(255,255,255,.05)_35%,rgba(17,17,17,.62)_100%)]" />
+          <div className="mt-6 space-y-5 text-[clamp(.98rem,1.3vw,1.12rem)] leading-[1.42] text-black">
+            <p>
+              We believe every person, brand and milestone has a story worth preserving. Our photography is calm, guided and made
+              to feel natural while producing beautiful images with clarity and style.
+            </p>
+            <p>
+              Whether you need elegant portraits, professional headshots, family moments, corporate coverage or branded imagery,
+              our sessions are shaped around you.
+            </p>
+            <p className="font-bold">
+              At Eyein Studio, we are passionate about creating images that feel polished, personal and timeless.
+            </p>
+          </div>
 
-      <div
-        ref={introRef}
-        className="container-wide pointer-events-none relative flex min-h-[94svh] flex-col items-center justify-end pb-24 pt-36 text-center"
-      >
-        <p data-intro className="mb-5 text-[10px] font-semibold uppercase tracking-[.34em] text-white/90">
-          EyeinStudio · Kigali photography studio
-        </p>
-
-        <h1 ref={wordRef} className="display max-w-[14ch] text-[17vw] leading-[.86] tracking-[-.06em] text-white sm:text-[12vw] lg:text-[9.5rem]">
-          {slides[active].word}
-        </h1>
-        <p ref={subRef} className="mt-6 max-w-xl text-base leading-7 text-white/95 sm:text-lg">
-          {slides[active].subhead}
-        </p>
-
-        <div data-intro className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
           <Link
             href="/booking"
-            className="btn-primary min-w-44 !border-white !bg-white !text-[color:var(--foreground)] hover:!bg-white/80"
+            className="mt-4 inline-flex bg-black px-5 py-4 text-center text-[10px] font-extrabold uppercase leading-tight tracking-[.02em] text-white transition hover:bg-black/80"
           >
-            Book your shoot <ArrowRight className="size-4" />
+            Book your
+            <br />
+            session
           </Link>
-          <Link
-            href="/portfolio"
-            className="btn-ghost min-w-44 !border-white/70 !text-white hover:!bg-white hover:!text-[color:var(--foreground)]"
-          >
-            View gallery
-          </Link>
+
+          <div className="mt-5 grid gap-4 sm:max-w-[12.5rem]">
+            <div className="relative aspect-[1/1.08] overflow-hidden bg-neutral-100">
+              <Image
+                src={heroImages.smallOne}
+                alt="Eyein Studio colorful portrait moment"
+                fill
+                sizes="(max-width: 1024px) 45vw, 13vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-[1/.72] overflow-hidden bg-neutral-100">
+              <Image
+                src={heroImages.smallTwo}
+                alt="Eyein Studio people-focused portrait"
+                fill
+                sizes="(max-width: 1024px) 45vw, 13vw"
+                className="object-cover object-top"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="relative min-h-[72vh] overflow-hidden bg-neutral-100 lg:min-h-[calc(100vh-10.5rem)]">
+          <Image
+            src={heroImages.main}
+            alt="Eyein Studio portrait session"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 69vw"
+            className="object-cover object-[center_22%]"
+          />
         </div>
       </div>
-
-      <div className="absolute inset-x-0 bottom-7 z-10 mx-auto flex w-[min(30rem,calc(100%-3rem))] items-center justify-center gap-3">
-        {slides.map((slide, index) => (
-          <button
-            key={slide.word}
-            type="button"
-            aria-label={`Show ${slide.word.toLowerCase()} slide`}
-            aria-current={active === index}
-            onClick={() => swiperRef.current?.slideToLoop(index)}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              active === index ? "w-10 bg-white" : "w-5 bg-white/45 hover:bg-white/70"
-            }`}
-          />
-        ))}
-      </div>
-
-      <a
-        href="#services-intro"
-        aria-label="Scroll to services"
-        className="absolute bottom-7 right-6 hidden items-center gap-2 text-[10px] uppercase tracking-[.2em] text-white/85 md:flex"
-      >
-        Discover <ArrowDown className="size-4" />
-      </a>
     </section>
   );
 }
